@@ -1,8 +1,11 @@
+from get_route import GetRoute
 from flask import Flask
 from flask_restful import reqparse, abort, Api, Resource
 
 app = Flask(__name__)
 api = Api(app)
+
+route = GetRoute()
 
 TODOS = {
     'todo1': {'task': 'build an API'},
@@ -42,7 +45,9 @@ class Todo(Resource):
 # shows a list of all todos, and lets you POST to add new tasks
 class TodoList(Resource):
     def get(self):
-        return TODOS
+        route.getRoteData(57.715495, 12.004210)
+        return route.dataJson
+        # return TODOS
 
     def post(self):
         args = parser.parse_args()
