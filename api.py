@@ -47,11 +47,7 @@ class Todo(Resource):
 # shows a list of all todos, and lets you POST to add new tasks
 class TodoList(Resource):
     def get(self):
-        # Запускаю просчет маршрута по координатам
-        route.getRoteData(57.715495, 12.004210)
-        # Возращаю лист координатов
-        return route.dataJson
-        # return TODOS
+        return TODOS
 
     def post(self):
         args = parser.parse_args()
@@ -60,11 +56,24 @@ class TodoList(Resource):
         TODOS[todo_id] = {'task': args['task']}
         return TODOS[todo_id], 201
 
+# GetRoute
+# shows a list of all todos, and lets you POST to add new tasks
+class GetRoute(Resource):
+    def get(self):
+        longitude = app.args['longitude']
+        latitude = app.args['latitude']
+        # Запускаю просчет маршрута по координатам
+        route.getRoteData(longitude, latitude)
+        # Возращаю лист координатов
+        return route.dataJson
+      
+
 ##
 ## Actually setup the Api resource routing here
 ##
 api.add_resource(TodoList, '/todos')
 api.add_resource(Todo, '/todos/<todo_id>')
+api.add_resource(TodoList, '/getRoute')
 
 
 if __name__ == '__main__':
