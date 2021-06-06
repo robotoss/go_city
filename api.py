@@ -4,7 +4,9 @@ from flask_restful import reqparse, abort, Api, Resource
 
 app = Flask(__name__)
 api = Api(app)
-
+# Инициализирую клас Маршрутов, что бы прогрузились
+# все карты маршрутов, что бы не ждать каждый раз
+# когда нужно просчитать маршрут
 route = GetRoute()
 
 TODOS = {
@@ -45,7 +47,9 @@ class Todo(Resource):
 # shows a list of all todos, and lets you POST to add new tasks
 class TodoList(Resource):
     def get(self):
+        # Запускаю просчет маршрута по координатам
         route.getRoteData(57.715495, 12.004210)
+        # Возращаю лист координатов
         return route.dataJson
         # return TODOS
 

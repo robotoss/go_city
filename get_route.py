@@ -9,7 +9,7 @@ import networkx as nx
 import osmnx as ox
 
 class GetRoute:
-    """Class for get route by coordinate"""  
+    """Класс для расчета маршрутов"""  
     longitude = 0.0
     latitude = 0.0
     dataJson = {}
@@ -29,7 +29,7 @@ class GetRoute:
 
             # G = create_graph("Gothenburg", 2500, "drive", fig_width=12, fig_height=12)
         G = create_graph("Gothenburg", 2500, "drive")
-        # Paint in jpg (disable at the moment)
+        # Отрисовка путей маршрута
         #ox.plot_graph(G)
 
         # impute missing edge speeds and add travel times
@@ -48,7 +48,7 @@ class GetRoute:
         route = nx.shortest_path( self.G, start_node, end_node, weight='travel_time')
 
         # ox.plot_graph_route(G, route, route_linewidth=6, node_size=0, bgcolor='k',fig_width=12, fig_height=12 );
-        # Paint in jpg (disable at the moment)
+        # Отрисовка маршурта на карте (отображения фото)
         # ox.plot_graph_route(G, route, route_linewidth=6, node_size=0, bgcolor='k' );
 
         #see the travel time for the whole route
